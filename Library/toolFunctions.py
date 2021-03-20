@@ -105,13 +105,13 @@ class GenericTool:
         for i in results:
             ret += i
             ret += '\n'
-        sess = open("Configs/cookie.log", "w")
+        sess = open("Configs/cookie.txt", "w")
         sess.write(ret)
         sess.close()
 
     def getBilibiliLoginHist(): #completed
         GenericTool.extractBilibiliCookies(GenericTool.extractUserCookies())
-        result = GenericTool.runArbitraryCmd('curl -sS --cookie ' + "Configs/cookie.log" + " " + "https://api.bilibili.com/x/member/web/login/log")
+        result = GenericTool.runArbitraryCmd('curl -sS --cookie ' + "Configs/cookie.txt" + " " + "https://api.bilibili.com/x/member/web/login/log")
         return result
 
     def getBilibiliPlayHist(endTime): #completed
@@ -120,7 +120,7 @@ class GenericTool:
         ts = int(datetime.now().timestamp())
 
         while ts > endTime:
-            obj = GenericTool.runArbitraryCmd('curl -sS --cookie ' + "Configs/cookie.log" + " " + "https://api.bilibili.com/x/web-interface/history/cursor?max=999&view_at={0}&business=".format(str(ts)))
+            obj = GenericTool.runArbitraryCmd('curl -sS --cookie ' + "Configs/cookie.txt" + " " + "https://api.bilibili.com/x/web-interface/history/cursor?max=999&view_at={0}&business=".format(str(ts)))
             arr = jsonparser.loads(obj)['data']['list']
             recs.append(arr)
             ts = arr[-1]['view_at']
