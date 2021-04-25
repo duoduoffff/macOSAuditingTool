@@ -30,8 +30,9 @@ class ConfigurationException (Exception):
 class GenericTool:
     """docstring for GenericTool."""
 
-    def runArbitraryCmd(string):
-        print(string)
+    def runArbitraryCmd(string, whetherDebug=False):
+        if whetherDebug == True:
+            print(string)
         string += "; exit 0"
         cmd = subprocess.check_output(string, stderr=subprocess.STDOUT, shell = True)
         return cmd.decode("utf-8")
@@ -99,7 +100,7 @@ class GenericTool:
         return wOtherSess
 
     def extractBilibiliCookies(input): #completed
-        pattern = re.compile(r'^a?p?i?\.bilibili.com.*$', re.MULTILINE)
+        pattern = re.compile(r'^a?p?i?\.bilibili\.com.*$', re.MULTILINE)
         results = pattern.findall(input)
         ret = ""
         for i in results:

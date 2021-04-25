@@ -1,5 +1,6 @@
 # do not upload your bilibili session!!!
 ######################
+cookie.txt
 *.log
 loc.json
 
